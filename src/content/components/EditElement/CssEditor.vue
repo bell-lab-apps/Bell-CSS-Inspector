@@ -1,29 +1,11 @@
 <template>
   <div class="css-editor">
-    <form
-        autocomplete="off"
-        @submit.prevent="submitForm"
+    <add-form
         v-if="!readonly"
-        class="css-editor__add-property"
-    >
-      <input
-          type="text"
-          class="css-editor__css-key"
-          name="key"
-          placeholder="Key"
-          v-model="state.key"
-      />
-      <input
-          type="text"
-          name="value"
-          class="css-editor__css-value"
-          placeholder="Value"
-          v-model="state.value"
-      />
-      <button>
-        <v-mdi name="mdi-plus"></v-mdi>
-      </button>
-    </form>
+        v-model:key="state.key"
+        v-model:value="state.value"
+        @submit="submitForm"
+    ></add-form>
     <div class="css-editor__properties scroll" v-if="css.length !== 0">
       <div
           class="css-editor__property"
@@ -58,10 +40,12 @@
 </template>
 
 <script>
-import validateColor from 'validate-color';
 import { shallowReactive } from 'vue';
+import validateColor from 'validate-color';
+import AddForm from '../AddForm.vue';
 
 export default {
+  components: { AddForm },
   props: {
     css: {
       type: Array,
@@ -91,7 +75,7 @@ export default {
 
         if (props.css[index][change] === value) return;
 
-        emit('change', { value, index, change });
+        emit(`change:${change}`, { value, index });
       },
       submitForm: () => {
         if (state.key === '' || state.value === '') return;
