@@ -1,7 +1,7 @@
 <template>
   <div class="fixed right-0 m-6 top-0" style="width: 300px;">
     <Menu @close="closeExtension" :menu="menu" v-model="state.activeMenu"></Menu>
-    <div class="bg-default p-5 rounded-lg overflow-auto scroll" style="min-height: 200px; max-height: calc(100vh - 140px)">
+    <div class="bg-default p-5 rounded-lg overflow-x-hidden overflow-y-auto scroll" style="min-height: 200px; max-height: calc(100vh - 140px)">
       <transition :name="state.transition" mode="out-in">
         <component :key="state.activeMenu" :is="state.activeMenu" :activeElementId="state.activeElementId"></component>
       </transition>
@@ -13,9 +13,10 @@ import { onMounted, shallowReactive, watch } from 'vue';
 import Properties from './components/EditElement/Properties.vue';
 import Attributes from './components/EditElement/Attributes.vue';
 import Codes from './components/EditElement/GlobalCss.vue';
+import Palletes from './components/EditElement/WebsitePalettes.vue';
 import Menu from './components/Menu.vue';
 export default {
-  components: { Properties, Menu, Attributes, Codes },
+  components: { Properties, Menu, Attributes, Codes, Palletes },
   setup() {
     const state = shallowReactive({
       activeElementId: 0,
@@ -26,6 +27,7 @@ export default {
       { name: 'properties', title: 'Element properties', icon: 'mdi-vector-square' },
       { name: 'attributes', title: 'Edit attributes', icon: 'mdi-square-edit-outline' },
       { name: 'codes', title: 'Global CSS Code', icon: 'mdi-code-tags' },
+      { name: 'palletes', title: 'Website Palletes', icon: 'mdi-palette' },
     ];
     const eventHandler = target => {
       if (target.matches('.inspector,.active-element,html,body')) return;

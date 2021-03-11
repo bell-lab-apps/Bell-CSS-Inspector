@@ -1,8 +1,8 @@
 import VueMdijs from 'vue-mdijs';
-import { mdiFormatFont, mdiPlus, mdiDragVariant, mdiVectorSquare, mdiSquareEditOutline, mdiDrag, mdiClose, mdiDelete, mdiCodeTags } from '@mdi/js';
+import { mdiFormatColorText, mdiPlus, mdiDragVariant, mdiVectorSquare, mdiSquareEditOutline, mdiDrag, mdiClose, mdiDelete, mdiCodeTags, mdiPalette } from '@mdi/js';
 
 VueMdijs.add({
-  mdiFormatFont,
+  mdiFormatColorText,
   mdiPlus,
   mdiDragVariant,
   mdiVectorSquare,
@@ -11,6 +11,7 @@ VueMdijs.add({
   mdiClose,
   mdiDelete,
   mdiCodeTags,
+  mdiPalette,
 });
 
 export default VueMdijs;

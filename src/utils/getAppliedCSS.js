@@ -1,16 +1,17 @@
 const extractCSS = cssText => {
-  const stylesArr = cssText.split(';').map(str => {
-    if (str === '') return;
-    const [key, value] = str.split(':');
+  // const stylesArr = cssText.split(';').map((str) => {
+  //   if (str === '') return;
+  //   const [key, value] = str.split(':');
 
-    return {
-      key: key.trim(),
-      value: value.trim(),
-    };
-  });
-  stylesArr.pop();
+  //   return {
+  //     key: key.trim(),
+  //     value: value.trim(),
+  //   };
+  // });
+  // stylesArr.pop();
 
-  return stylesArr;
+  // return stylesArr;
+  return cssText.replace(/;\s|;/g, ';\n');
 };
 
 const removeDuplicate = arr => {
@@ -53,7 +54,7 @@ export default function(el) {
       const rules = Array.from(sheet.rules || sheet.cssRules);
       const filteredRules = rules.filter(rule => el.matches(rule.selectorText));
 
-      filteredRules.forEach9(({ style, selectorText }) => {
+      filteredRules.forEach(({ style, selectorText }) => {
         if (/\:\:before|\:\:after|\*/g.test(selectorText)) return;
         if (/\:hover/g.test(selectorText)) {
           result.hover = result.hover.concat(extractCSS(style.cssText));
@@ -68,10 +69,10 @@ export default function(el) {
     }
   });
 
-  result.css = extractInlineStyles(el).concat(result.css);
+  result.css += extractInlineStyles(el);
 
   return {
-    css: removeDuplicate(result.css),
-    hover: removeDuplicate(result.hover),
+    css: result.css,
+    hover: result.hover,
   };
 }
