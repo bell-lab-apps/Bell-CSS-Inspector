@@ -1,9 +1,14 @@
 module.exports = {
+  prefix: 'tw-',
   purge: {
     enabled: process.env.NODE_ENV === 'production',
-    content: ['./src/**/*.vue'],
+    content: ['./src/**/*.html', './src/**/*.vue'],
   },
   theme: {
+    fontFamily: {
+      display: ['Inter', 'sans-serif'],
+      body: ['Inter', 'sans-serif'],
+    },
     borderRadius: {
       sm: '0.125rem',
       default: '0.25rem',
@@ -11,8 +16,13 @@ module.exports = {
       lg: '0.9375rem',
       full: '9999px',
     },
+    fontSize: {
+      sm: ['14px', '20px'],
+      base: ['16px', '24px'],
+      lg: ['20px', '28px'],
+      xl: ['24px', '32px'],
+    },
     borderColor: theme => ({
-      ...theme('colors'),
       default: 'rgba(255, 255, 255, 0.15)',
     }),
     spacing: {
@@ -36,7 +46,7 @@ module.exports = {
       64: '256px',
     },
     future: {
-      purgeLayerByDefault: true,
+      purgeLayersByDefault: true,
     },
     extend: {
       colors: {
