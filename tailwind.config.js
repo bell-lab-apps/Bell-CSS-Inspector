@@ -1,5 +1,4 @@
 module.exports = {
-  prefix: 'ui-',
   purge: {
     enabled: process.env.NODE_ENV === 'production',
     content: ['./src/**/*.vue'],
@@ -35,6 +34,9 @@ module.exports = {
       48: '192px',
       56: '224px',
       64: '256px',
+    },
+    future: {
+      purgeLayerByDefault: true,
     },
     extend: {
       colors: {
