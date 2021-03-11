@@ -1,5 +1,5 @@
 <template>
-  <div class="global-css">
+  <div class="global-css p-5">
     <p class="font-semibold mb-3">Global CSS</p>
     <codeflask v-model:code="codes"></codeflask>
   </div>
@@ -23,7 +23,6 @@ export default {
     );
     onMounted(() => {
       const storageCodes = localStorage.getItem('global-css') || '';
-
       codes.value = storageCodes;
       const styleEl = document.getElementById('custom-global-css');
       if (styleEl) return;

@@ -1,9 +1,8 @@
 <template>
-  <div class="bg-default rounded-lg p-5 shadow-xl" style="width: 300px; z-index: 999" ref="container">
+  <div class="bg-default rounded-lg p-5 shadow-2xl" style="width: 300px; z-index: 999" ref="container">
     <element-size v-bind="state"></element-size>
   </div>
 </template>
-
 <script>
 import { ref, onMounted, shallowReactive } from 'vue';
 import { createPopper } from '@popperjs/core';
@@ -38,7 +37,6 @@ export default {
       const mousemove = ({ target, clientX, clientY }) => {
         if (target.classList.contains('inspector')) return container.value.classList.add('hidden');
         container.value.classList.remove('hidden');
-
         const isDragging = document.body.classList.contains('dragging');
         virtualElement.getBoundingClientRect = generateGetBoundingClientRect(clientX, clientY);
         instance.update();
@@ -59,7 +57,6 @@ export default {
           );
         }
       };
-
       window.addEventListener('mousemove', mousemove);
       emitter.on('extension-close', () => {
         window.removeEventListener('mousemove', mousemove);

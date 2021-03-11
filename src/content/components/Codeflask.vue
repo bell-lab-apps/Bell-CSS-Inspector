@@ -37,6 +37,7 @@ export default {
       });
       editor.value.updateCode(props.code);
       editor.value.onUpdate(value => {
+        if (typeof value !== 'string') return;
         emit('update:code', value);
         emit('change', value);
       });

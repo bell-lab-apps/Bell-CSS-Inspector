@@ -1,11 +1,11 @@
 <template>
-  <div class="fixed right-0 m-6 top-0" style="width: 300px;">
-    <Menu @close="closeExtension" :menu="menu" v-model="state.activeMenu"></Menu>
-    <div class="bg-default p-5 rounded-lg overflow-x-hidden overflow-y-auto scroll" style="min-height: 200px; max-height: calc(100vh - 140px)">
-      <transition :name="state.transition" mode="out-in">
+  <div class="fixed rounded-lg shadow-2xl overflow-hidden right-0 m-4 bg-default top-0" style="width: 300px;">
+    <div class="pb-16 overflow-auto scroll" style="min-height: 400px; max-height: calc(100vh - 140px)">
+      <keep-alive>
         <component :key="state.activeMenu" :is="state.activeMenu" :activeElementId="state.activeElementId"></component>
-      </transition>
+      </keep-alive>
     </div>
+    <Menu @close="closeExtension" :menu="menu" v-model="state.activeMenu"></Menu>
   </div>
 </template>
 <script>
@@ -24,10 +24,11 @@ export default {
       transition: 'slide-right',
     });
     const menu = [
-      { name: 'properties', title: 'Element properties', icon: 'mdi-vector-square' },
+      { name: 'properties', title: 'Element properties', icon: 'mdi-view-grid' },
       { name: 'attributes', title: 'Edit attributes', icon: 'mdi-square-edit-outline' },
-      { name: 'codes', title: 'Global CSS Code', icon: 'mdi-code-tags' },
-      { name: 'palletes', title: 'Website Palletes', icon: 'mdi-palette' },
+      { name: 'codes', title: 'Global CSS Code', icon: 'mdi-xml' },
+      { name: 'palletes', title: 'Palettes', icon: 'mdi-palette' },
+      // { name: 'assets', title: 'Assets', icon: 'mdi-image-multiple' },
     ];
     const eventHandler = target => {
       if (target.matches('.inspector,.active-element,html,body')) return;
@@ -46,7 +47,6 @@ export default {
     const closeExtension = () => {
       window.removeEventListener('click', clickHandler);
       document.removeEventListener('keyup', keyupHandler);
-
       const container = document.querySelector('.inspector');
       document.body.removeChild(container);
       const activeElement = document.querySelector('.active-element');
@@ -56,15 +56,6 @@ export default {
       window.addEventListener('click', clickHandler);
       document.addEventListener('keyup', keyupHandler);
     });
-    watch(
-      () => state.activeMenu,
-      (value, old) => {
-        const findIndex = key => menu.findIndex(({ name }) => key === name);
-        const indexNewMenu = findIndex(value);
-        const indexOldMenu = findIndex(old);
-        state.transition = indexNewMenu > indexOldMenu ? 'slide-right' : 'slide-left';
-      }
-    );
     return {
       menu,
       state,

@@ -1,5 +1,5 @@
 <template>
-  <div class="css-editor">
+  <div class="css-editor p-5">
     <add-form v-if="!readonly" v-model:key="state.key" v-model:value="state.value" @submit="submitForm" class="mb-1"></add-form>
     <div class="css-editor__properties scroll" v-if="css.length !== 0">
       <div class="css-editor__property" v-for="(property, index) in css" :key="property.key + index">

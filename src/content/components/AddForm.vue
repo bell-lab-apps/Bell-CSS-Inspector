@@ -1,5 +1,5 @@
 <template>
-  <form autocomplete="off" @submit.prevent="emit('submit', $event)" class="rounded-md add-form border flex items-center">
+  <form autocomplete="off" @submit.prevent="emit('submit', $event)" class="rounded-md add-form border text-sm flex items-center">
     <input
       type="text"
       class="p-2 w-5/12 focus:outline-none add-form__key bg-transparent"

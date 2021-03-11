@@ -11,7 +11,7 @@ const config = {
   mode: process.env.NODE_ENV,
   context: __dirname + '/src',
   entry: {
-    content: ['./assets/css/content.css', './content.js'],
+    content: ['./assets/scss/tailwind.scss', './content.js'],
     background: './background.js',
   },
   output: {
@@ -43,7 +43,7 @@ const config = {
       {
         test: /\.scss$/,
         use: [
-          'to-string-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'postcss-loader',

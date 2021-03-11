@@ -9,7 +9,7 @@
       <v-mdi name="mdi-format-color-text" style="margin-left: -5px"></v-mdi>
       {{ computedStyles.fontFamily }}
     </p>
-    <div class="px-10 py-8 bg-primary bg-opacity-25 rounded-lg relative mb-2 h-40" style="height: 166px">
+    <div class="px-10 py-8 bg-primary bg-opacity-25 rounded-lg relative mb-2 text-sm" style="height: 166px">
       <span class="absolute left-0 top-0 ml-2 mt-1 text-sm">margin</span>
       <span
         v-for="direction in directions"

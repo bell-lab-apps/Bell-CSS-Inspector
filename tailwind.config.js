@@ -1,4 +1,5 @@
 module.exports = {
+  prefix: 'ui-',
   purge: {
     enabled: process.env.NODE_ENV === 'production',
     content: ['./src/**/*.vue'],
@@ -11,6 +12,10 @@ module.exports = {
       lg: '0.9375rem',
       full: '9999px',
     },
+    borderColor: theme => ({
+      ...theme('colors'),
+      default: 'rgba(255, 255, 255, 0.15)',
+    }),
     spacing: {
       0: '0px',
       1: '4px',
@@ -41,7 +46,7 @@ module.exports = {
       },
       backgroundColor: {
         default: '#2d3748',
-        light: 'rgba(255, 255, 255, 0.05)',
+        light: '#384151',
       },
       textColor: {
         default: '#f7f7f7',

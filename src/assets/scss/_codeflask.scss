@@ -1,78 +1,94 @@
+/**
+ * Nord Theme Originally by Arctic Ice Studio
+ * https://nordtheme.com
+ *
+ * Ported for PrismJS by Zane Hitchcoxc (@zwhitchcox) and Gabriel Ramos (@gabrieluizramos)
+ */
+
 .codeflask {
   position: relative !important;
   background-color: transparent;
-  height: 300px !important;
-  color: #fd9170;
+  color: #f8f8f2 !important;
+  min-height: 100px;
+  &__textarea,
+  &__code {
+    font-size: 15px !important;
+    font-family: 'Ubuntu Mono', monospace !important;
+  }
   &__flatten {
     caret-color: white !important;
     padding: 0 !important;
   }
-  &__textarea,
-  &__code {
-    font-family: 'Fira Code', monospace !important;
-  }
-  .token.atrule,
-  .token.boolean,
-  .token.constant {
-    color: #c792ea;
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #636f88;
   }
 
-  .token.class {
-    color: #ffcb6b;
+  .token.punctuation {
+    color: #81a1c1;
   }
 
-  .token.class-name,
-  .token.hexcode {
-    color: #f2ff00;
+  .namespace {
+    opacity: 0.7;
   }
 
-  .token.comment {
-    color: #616161;
-  }
-
-  .token.deleted,
-  .token.entity,
-  .token.selector,
+  .token.property,
   .token.tag,
-  .token.url,
-  .token.variable {
-    color: #ff6666;
-  }
-
-  .token.id,
-  .token.important,
-  .token.symbol {
-    color: #c792ea;
-    font-weight: bold;
-  }
-
-  .token.inserted {
-    color: #80cbc4;
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: #81a1c1;
   }
 
   .token.number {
-    color: #fd9170;
+    color: #b48ead;
+  }
+
+  .token.boolean {
+    color: #81a1c1;
+  }
+
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    color: #a3be8c;
   }
 
   .token.operator,
-  .token.punctuation {
-    color: #89ddff;
+  .token.entity,
+  .token.url,
+  .language-css .token.string,
+  .style .token.string,
+  .token.variable {
+    color: #81a1c1;
   }
 
-  .token.prolog {
-    color: #616161;
+  .token.atrule,
+  .token.attr-value,
+  .token.function,
+  .token.class-name {
+    color: #88c0d0;
   }
 
-  .token.property {
-    color: #80cbc4;
+  .token.keyword {
+    color: #81a1c1;
   }
 
-  .token.pseudo-class,
-  .token.pseudo-element,
-  .token.string {
-    color: #a5e844;
+  .token.regex,
+  .token.important {
+    color: #ebcb8b;
   }
-  .token.unit {
-    color: #fd9170;
+
+  .token.italic {
+    font-style: italic;
+  }
+
+  .token.entity {
+    cursor: help;
   }
 }

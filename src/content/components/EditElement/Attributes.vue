@@ -1,5 +1,5 @@
 <template>
-  <div class="edit-attributes">
+  <div class="edit-attributes p-5">
     <h3 class="mb-3 font-semibold">Edit Attributes</h3>
     <add-form style="margin-bottom: 14px" v-model:key="state.key" v-model:value="state.value" @submit="addAttribute"></add-form>
     <p class="text-light mt-6 text-center text-opacity-75" v-show="Object.keys(state.attributes).length === 0">
@@ -35,7 +35,6 @@ export default {
       if (!target) return;
       const attributes = Array.from(target.attributes).reduce((attrs, { name, value }) => {
         if (blackListAttrs.includes(name)) return attrs;
-
         attrs[name] = value;
         return attrs;
       }, {});
@@ -47,7 +46,6 @@ export default {
     }, 400);
     const addAttribute = () => {
       if (state.key === '' || blackListAttrs.includes(state.key)) return;
-
       updateAttribute(state.value, state.key);
       state.attributes[state.key] = state.value;
       state.key = state.value = '';
@@ -55,7 +53,6 @@ export default {
     const deleteAttribute = key => {
       const activeElement = document.querySelector('.active-element');
       activeElement.removeAttribute(key);
-
       delete state.attributes[key];
     };
     watch(() => props.activeElementId, init);
