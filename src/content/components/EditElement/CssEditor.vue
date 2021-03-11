@@ -1,38 +1,16 @@
 <template>
   <div class="css-editor">
-    <add-form
-        v-if="!readonly"
-        v-model:key="state.key"
-        v-model:value="state.value"
-        @submit="submitForm"
-    ></add-form>
+    <add-form v-if="!readonly" v-model:key="state.key" v-model:value="state.value" @submit="submitForm" class="mb-1"></add-form>
     <div class="css-editor__properties scroll" v-if="css.length !== 0">
-      <div
-          class="css-editor__property"
-          v-for="(property, index) in css"
-          :key="property.key + index"
-      >
-	      <span
-            @blur="handleChange($event, index, 'key')"
-            :contenteditable="!readonly"
-            class="css-editor__css-key"
-        >
-	        {{ property.key }}
-	      </span>
+      <div class="css-editor__property" v-for="(property, index) in css" :key="property.key + index">
+        <span @blur="handleChange($event, index, 'key')" :contenteditable="!readonly" class="css-editor__css-key">
+          {{ property.key }}
+        </span>
         <span class="css-editor__separator">:</span>
-        <span
-            v-if="isValidColor(property)"
-            class="css-editor__color-preview"
-            :style="{ backgroundColor: property.value }"
-        ></span>
-        <span
-            @input="handleChange($event, index, 'value')"
-            @blur="onValueBlur($event, index)"
-            :contenteditable="!readonly"
-            class="css-editor__css-value"
-        >
-	        {{ property.value }}
-	      </span>
+        <span v-if="isValidColor(property)" class="css-editor__color-preview h-3 w-3 inline-block border mr-1" :style="{ backgroundColor: property.value }"></span>
+        <span @input="handleChange($event, index, 'value')" @blur="onValueBlur($event, index)" :contenteditable="!readonly" class="css-editor__css-value">
+          {{ property.value }}
+        </span>
         <span class="css-editor__semicolon">;</span>
       </div>
     </div>
@@ -66,7 +44,7 @@ export default {
           if (value.startsWith('var')) return true;
 
           return validateColor(value);
-        };
+        }
 
         return false;
       },
@@ -88,11 +66,9 @@ export default {
         const value = path[0].innerText;
         emit('blur:value', { index, value });
       },
-    }
-  }
+    };
+  },
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

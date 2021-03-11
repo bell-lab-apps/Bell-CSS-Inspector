@@ -1,12 +1,9 @@
 <template>
-  <div class="edit-element">
+  <div class="fixed right-0 m-8 top-0" style="width: 300px;">
     <Menu @close="closeExtension" :menu="menu" v-model="state.activeMenu"></Menu>
-    <div class="edit-element__content">
+    <div class="bg-default p-5 rounded-lg overflow-hidden" style="min-height: 200px">
       <transition :name="state.transition" mode="out-in">
-        <component
-            :is="state.activeMenu"
-            :activeElementId="state.activeElementId"
-        ></component>
+        <component :is="state.activeMenu" :activeElementId="state.activeElementId"></component>
       </transition>
     </div>
   </div>
@@ -44,7 +41,7 @@ export default {
 
         eventHandler(target);
       }
-    }
+    };
     const closeExtension = () => {
       window.removeEventListener('click', clickHandler);
       document.removeEventListener('keyup', keyupHandler);
@@ -59,13 +56,16 @@ export default {
       window.addEventListener('click', clickHandler);
       document.addEventListener('keyup', keyupHandler);
     });
-    watch(() => state.activeMenu, (value, old) => {
-      const findIndex = (key) => menu.findIndex(({ name }) => key === name);
-      const indexNewMenu = findIndex(value);
-      const indexOldMenu = findIndex(old);
+    watch(
+      () => state.activeMenu,
+      (value, old) => {
+        const findIndex = key => menu.findIndex(({ name }) => key === name);
+        const indexNewMenu = findIndex(value);
+        const indexOldMenu = findIndex(old);
 
-      state.transition = indexNewMenu > indexOldMenu ? 'slide-right' : 'slide-left';
-    });
+        state.transition = indexNewMenu > indexOldMenu ? 'slide-right' : 'slide-left';
+      }
+    );
     return {
       menu,
       state,

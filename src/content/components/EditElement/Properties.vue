@@ -1,21 +1,17 @@
 <template>
   <div class="properties" v-if="state.selected">
-    <element-size
-        :size="state.size"
-        :selector="state.selector"
-        :computedStyles="state.computedStyles"
-        :show-info="false"
-    ></element-size>
+    <element-size :size="state.size" :selector="state.selector" :computedStyles="state.computedStyles" :show-info="false"></element-size>
     <css-editor
-        @change:key="onEditorKeyChange"
-        @change:value="onEditorValueChange"
-        @blur:value="onValueBlur"
-        @add="onAddProperty"
-        :css="state.appliedCSS.css"
+      @change:key="onEditorKeyChange"
+      @change:value="onEditorValueChange"
+      @blur:value="onValueBlur"
+      @add="onAddProperty"
+      class="mt-4"
+      :css="state.appliedCSS.css"
     ></css-editor>
-    <div class="hover-css" v-if="state.appliedCSS.hover.length !== 0">
+    <div class="px-3 py-2 bg-light rounded-lg mt-4" v-if="state.appliedCSS.hover.length !== 0">
       <p>:hover</p>
-      <css-editor class="hover" :css="state.appliedCSS.hover" readonly></css-editor>
+      <css-editor :css="state.appliedCSS.hover" readonly></css-editor>
     </div>
   </div>
 </template>
@@ -41,7 +37,7 @@ export default {
       selected: false,
       appliedCSS: { css: [], hover: [] },
     });
-    const findDuplicateKey = (key) => state.appliedCSS.css.findIndex((style) => style.key === key);
+    const findDuplicateKey = key => state.appliedCSS.css.findIndex(style => style.key === key);
     const onEditorKeyChange = ({ value, index }) => {
       const activeElement = document.querySelector('.active-element');
       const styles = state.appliedCSS.css;
