@@ -1,6 +1,6 @@
 <template>
   <div class="global-css p-5">
-    <p class="font-semibold mb-3">Global CSS</p>
+    <p class="font-semibold mb-3">Custom CSS</p>
     <codeflask v-model:code="codes"></codeflask>
   </div>
 </template>

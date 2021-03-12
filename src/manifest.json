@@ -1,6 +1,6 @@
 {
   "name": "Bell CSS Inspector",
-  "description": "An easier way to inspect and edit CSS",
+  "description": "An easier way to inspect any element's CSS",
   "version": "1.0.0",
   "manifest_version": 2,
   "icons": {
@@ -9,9 +9,7 @@
   },
   "browser_action": {},
   "background": {
-    "scripts": [
-      "background.js"
-    ]
+    "scripts": ["background.js"]
   },
-  "permissions": ["activeTab", "unlimitedStorage", "storage"]
+  "permissions": ["activeTab"]
 }
